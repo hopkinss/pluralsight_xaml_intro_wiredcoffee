@@ -1,0 +1,125 @@
+﻿<Window
+    x:Class="WiredBrainCoffee.CusomtersApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:WiredBrainCoffee.CusomtersApp.Controls"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:model="clr-namespace:WiredBrainCoffee.CusomtersApp.Models"
+    xmlns:models="clr-namespace:WiredBrainCoffee.CusomtersApp.Models"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    Title="Coffee"
+    Width="525"
+    Height="350">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.ColumnSpan="3"
+            Background="{StaticResource headBg}"
+            Orientation="Horizontal">
+            <Image Height="90">
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/coffeeCup.png" />
+                </Image.Source>
+            </Image>
+            <TextBlock
+                Margin="20"
+                VerticalAlignment="Bottom"
+                FontSize="30"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="Coffee Customers" />
+            <TextBlock
+                Margin="5"
+                VerticalAlignment="Top"
+                Foreground="#333333"
+                Text="Version 1.0" />
+        </StackPanel>
+
+        <!--  Buttons  -->
+        <Grid x:Name="customerListGrid" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    Click="BtnAddNewCustomer_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="PlusCircleOutline" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="BtnDeleteCustomer_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="DeleteOutline" />
+                            <TextBlock />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button
+                    x:Name="btnMove"
+                    Click="BtnMove_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial
+                                x:Name="icnMove"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="ArrowRightCircleOutline" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+            <ListView
+                x:Name="customerListView"
+                SelectedItem="{Binding Path=SelectedCustomer,Mode=TwoWay}"
+                Grid.Row="1"
+                ItemsSource="{Binding Customers,Mode=OneWay }">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=FirstName,Mode=OneWay}"
+                                       FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Path=LastName,Mode=OneWay}"
+                                       Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <!--  Customer detail  -->
+        <controls:CustomerDetailControl
+            x:Name="customerDetailControl"
+            Grid.Row="1"
+            Grid.Column="1"
+            Customer="{Binding SelectedCustomer, Mode=OneWay}" />
+
+
+
+    </Grid>
+
+</Window>

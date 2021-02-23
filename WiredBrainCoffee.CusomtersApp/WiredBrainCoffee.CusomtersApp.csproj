@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>WiredBrainCoffee.CusomtersApp</RootNamespace>
+    <EnableDefaultItems>False</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFrameWorkCore.SqlServerCompact40" Version="2.2.0.7" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.3" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
+    <PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2020.3.1020" />
+  </ItemGroup>
+  
+  <ItemGroup>
+  <ApplicationDefinition Include="App.xaml">
+    <Generator>MSBuild:Compile</Generator>
+    <SubType>Designer</SubType>
+  </ApplicationDefinition>
+  <Page Include="Controls\CustomerDetailControl.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="MainWindow.xaml">
+    <Generator>MSBuild:Compile</Generator>
+    <SubType>Designer</SubType>
+  </Page>
+  <Page Include="Resources\Brushes.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Resources\Styles.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Compile Include="App.xaml.cs">
+    <DependentUpon>App.xaml</DependentUpon>
+    <SubType>Code</SubType>
+  </Compile>
+  <Compile Include="Controls\CustomerDetailControl.xaml.cs" />
+  <Compile Include="DataProvider\CustomerDataProvider.cs" />
+  <Compile Include="DataProvider\ICustomerDataProvider.cs" />
+  <Compile Include="MainWindow.xaml.cs">
+    <DependentUpon>MainWindow.xaml</DependentUpon>
+    <SubType>Code</SubType>
+  </Compile>
+  <Compile Include="Models\Customer.cs" />
+  <Compile Include="Models\CoffeeShopContext.cs" />
+  <Compile Include="Base\Observable.cs" />
+  <Compile Include="Models\CustomerConverter.cs" />
+  <Compile Include="ViewModel\MainViewModel.cs" />
+</ItemGroup>
+  
+  <ItemGroup>
+    <Resource Include="Images\coffeeCup.png" />
+  </ItemGroup>
+
+</Project>
